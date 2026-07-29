@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qpdf
-PKG_VERSION:=12.2.0
+PKG_VERSION:=12.3.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/qpdf/qpdf/releases/download/v$(PKG_VERSION)/
-PKG_HASH:=b3d1575b2218badc3549d6977524bb0f8c468c6528eebc8967bbe3078cf2cace
+PKG_HASH:=6cba2f9f2cd887d905faeb99e0e51a307b217920d1bbf3e9cfbb2e8178a2deda
 
 CMAKE_INSTALL:=1
 
