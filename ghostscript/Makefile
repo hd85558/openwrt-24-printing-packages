@@ -1,12 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ghostscript
-PKG_VERSION:=10.06.0
-PKG_VERSION_LIBDIR:=10.06.0
+PKG_VERSION:=10.07.1
+PKG_VERSION_LIBDIR:=10.07.1
 PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10060
-PKG_HASH:=5bd6da34794928cc7e616f288e32bd0be7f9a5ca2d3c206a0af2c19a4e3a318f
+PKG_HASH:=2fc74362f9be6fae1b0a65d38fdcfd4f0b518cc3b07c5581fb661eb4d2e15251
 PKG_INSTALL:=1
 
 #no need to build host ghostscript
