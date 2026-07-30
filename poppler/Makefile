@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=https://poppler.freedesktop.org/
 PKG_HASH:=0c1091d01d3dd1664a13816861e812d02b29201e96665454b81b52d261fad658
 PKG_INSTALL:=1
 
-PKG_BUILD_DEPENDS:=libiconv-full
+PKG_BUILD_DEPENDS:=libiconv-full boost
 
 TARGET_CFLAGS+=-I$(STAGING_DIR)/usr/include
 TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
@@ -22,7 +22,7 @@ define Package/poppler
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Poppler PDF rendering library
-  DEPENDS:=+libpng +libtiff +libjpeg-turbo +zlib +lcms2 +fontconfig +libpthread +libfreetype +libstdcpp +cairo +glib2 +libintl-full +curl +libnss +nspr +boost
+  DEPENDS:=+libpng +libtiff +libjpeg-turbo +zlib +lcms2 +fontconfig +libpthread +libfreetype +libstdcpp +cairo +glib2 +libintl-full +curl +libnss +nspr +boost +libiconv-full
   URL:=https://poppler.freedesktop.org/
   SUBMENU:=Printing
 endef
@@ -48,7 +48,8 @@ CMAKE_OPTIONS += \
 	-DENABLE_GPGME=OFF \
 	-DUSE_CMS=lcms2 \
 	-DFONT_CONFIGURATION=fontconfig \
-	-DIconv_LIBRARY=$(STAGING_DIR)/usr/lib/libiconv-full/lib/libiconv.a
+	-DIconv_LIBRARY=$(STAGING_DIR)/usr/lib/libiconv-full/lib/libiconv.a \
+	-DBOOST_ROOT=$(STAGING_DIR)/usr
 
 define Package/poppler/install
 	$(INSTALL_DIR) $(1)/usr/bin $(1)/usr/lib
