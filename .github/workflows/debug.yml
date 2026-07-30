@@ -1,4 +1,4 @@
-name: Build Printing Packages (MT7621 SDK)
+name: Debug Packages (MT7621 SDK)
 
 on:
   workflow_dispatch:
@@ -39,13 +39,13 @@ jobs:
 
         make defconfig
 
-    - name: Build selected printing packages
+    - name: Build selected printing packages (with full logs)
       run: |
         cd openwrt-sdk
         echo "=== Start building selected printing packages ==="
-        for pkg in python3-dbus poppler libppd libcupsfilters cups-filters; do
+        for pkg in poppler libppd libcupsfilters cups-filters; do
           echo ">>> Building $pkg ..."
-          make package/feeds/printing/$pkg/compile V=e -j$(nproc) || echo "!!! $pkg failed"
+          make package/feeds/printing/$pkg/compile -j1 V=s || echo "!!! $pkg failed"
         done
         echo "=== Build finished ==="
 
