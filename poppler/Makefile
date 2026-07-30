@@ -22,7 +22,7 @@ define Package/poppler
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Poppler PDF rendering library
-  DEPENDS:=+libpng +libtiff +libjpeg-turbo +zlib +lcms2 +fontconfig +libpthread +libfreetype +libstdcpp +cairo +glib2 +libintl-full +curl +libnss +nspr +boost +libiconv-full
+  DEPENDS:=+libpng +libtiff +libjpeg-turbo +zlib +lcms2 +fontconfig +libpthread +libfreetype +libstdcpp +libcairo +glib2 +libintl-full +curl +libnss +nspr +boost +libiconv-full
   URL:=https://poppler.freedesktop.org/
   SUBMENU:=Printing
 endef
