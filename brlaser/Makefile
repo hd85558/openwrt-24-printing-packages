@@ -22,16 +22,24 @@ CMAKE_OPTIONS += \
 	-DBUILD_TESTING=OFF
 
 define Package/$(PKG_NAME)
-  SECTION:=net
-  CATEGORY:=Network
-  SUBMENU:=Printing
-  DEPENDS:=+libcupsimage +libstdcpp
-  TITLE:=$(PKG_NAME)
-  URL:=https://github.com/
+	SECTION:=net
+	CATEGORY:=Network
+	SUBMENU:=Printing
+	DEPENDS:=+libcupsimage +libstdcpp
+	TITLE:=$(PKG_NAME)
+	URL:=https://github.com/
 endef
 
 define Package/$(PKG_NAME)/description
-  $(PKG_NAME)
+	$(PKG_NAME)
+endef
+
+# 在源码准备好后自动注入 #include <cstdint> 到出问题的头文件中，彻底解决测试/编译时的 uint8_t 缺失错误
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	if [ -f $(PKG_BUILD_DIR)/test/tempfile.h ]; then \
+		sed -i 's/#include <vector>/#include <vector>\n#include <cstdint>/g' $(PKG_BUILD_DIR)/test/tempfile.h; \
+	fi
 endef
 
 define Package/$(PKG_NAME)/install
