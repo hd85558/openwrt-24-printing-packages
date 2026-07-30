@@ -20,10 +20,8 @@ define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Printing
-  DEPENDS:=+libc
-ifeq ($(ARCH),aarch64)
-  DEPENDS:=+box86 +libarmeabi
-endif
+  DEPENDS:=+libc \
+    $(if $(CONFIG_aarch64),+box86 +libarmeabi)
   TITLE:=Brother HL3040CN x86 binary filter
   URL:=https://github.com/
 endef
@@ -53,9 +51,9 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) \
 		$(PKG_BUILD_DIR)/opt/brother/Printers/hl3040cn/lpd/brhl3040cnfilter \
 		$(1)/opt/brother/Printers/hl3040cn/
-    $(INSTALL_DIR) $(1)/lib
-    ln -sf libc.so $(1)/lib/libc.so.6
-    ln -sf libc.so $(1)/lib/libm.so.6
+	$(INSTALL_DIR) $(1)/lib
+	ln -sf libc.so $(1)/lib/libc.so.6
+	ln -sf libc.so $(1)/lib/libm.so.6
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
