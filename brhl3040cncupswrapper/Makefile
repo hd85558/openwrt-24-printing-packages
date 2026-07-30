@@ -17,10 +17,8 @@ define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Printing
-  DEPENDS:=+libcupsimage +brhl3040cnfilter +libc
-ifeq ($(ARCH),aarch64)
-  DEPENDS:=+box86 +libarmeabi
-endif
+  DEPENDS:=+libcupsimage +brhl3040cnfilter +libc \
+    $(if $(CONFIG_aarch64),+box86 +libarmeabi)
   TITLE:=$(PKG_NAME)
   URL:=https://github.com/
 endef
@@ -32,6 +30,9 @@ endef
 define Build/Configure
 endef
 
+define Build/Compile
+endef
+
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/lib/cups/filter
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/usr/lib/cups/filter
@@ -41,6 +42,5 @@ define Package/$(PKG_NAME)/install
 	ln -sf libc.so $(1)/lib/libc.so.6
 	ln -sf libc.so $(1)/lib/libm.so.6
 endef
-
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
