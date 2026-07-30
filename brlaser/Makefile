@@ -17,8 +17,10 @@ PKG_HASH=f2d89b63fe1955cc365f8122023b6b3d4758d5bb20e55a72788212cb6951710f
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
+
 CMAKE_OPTIONS += \
 	-DBUILD_TESTING=OFF
+
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
@@ -40,6 +42,5 @@ define Package/$(PKG_NAME)/install
 #	$(INSTALL_DIR) $(1)/usr/share/ppd
 #	$(INSTALL_DATA) ./files/hl3040cn.ppd $(1)/usr/share/ppd/
 endef
-
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
