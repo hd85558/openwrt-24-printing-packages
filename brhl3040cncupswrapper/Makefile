@@ -14,23 +14,27 @@ PKG_RELEASE=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
-  SECTION:=net
-  CATEGORY:=Network
-  SUBMENU:=Printing
-  DEPENDS:=+libcupsimage +brhl3040cnfilter +libc \
-    $(if $(CONFIG_aarch64),+box86 +libarmeabi)
-  TITLE:=$(PKG_NAME)
-  URL:=https://github.com/
+	SECTION:=net
+	CATEGORY:=Network
+	SUBMENU:=Printing
+	DEPENDS:=+libcupsimage +brhl3040cnfilter +libc \
+		$(if $(CONFIG_aarch64),+box86 +libarmeabi)
+	TITLE:=$(PKG_NAME)
+	URL:=https://github.com/
 endef
 
 define Package/$(PKG_NAME)/description
-  $(PKG_NAME)
+	$(PKG_NAME)
 endef
 
 define Build/Configure
 endef
 
 define Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR) \
+		CC="$(TARGET_CC)" \
+		CFLAGS="$(TARGET_CFLAGS) -std=gnu99 -fPIC -fvisibility=hidden -fno-exceptions -ffunction-sections -fdata-sections -Wall -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -DPACKAGE=\\\"brhl3040cncupswrapper\\\" -DVERSION=\\\"1.0\\\"" \
+		LDFLAGS="$(TARGET_LDFLAGS) -Wl,--gc-sections -lcupsimage -lcups"
 endef
 
 define Package/$(PKG_NAME)/install
