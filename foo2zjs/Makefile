@@ -69,7 +69,7 @@ define Package/foo2zjs/install
 	$(INSTALL_DIR) $(1)/usr/share/cups/model
 	$(INSTALL_DIR) $(1)/usr/lib/cups/filter
 	$(INSTALL_DIR) $(1)/usr/share/foo2zjs
-	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR=$(1) install-test
+#	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR=$(1) install-test
 	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR=$(1) install-prog
 #	$(MAKE) -C $(PKG_BUILD_DIR) DESTDIR=$(1) install-icc2ps
 	$(MAKE) -C $(PKG_BUILD_DIR)/icc2ps DESTDIR=$(1) install
